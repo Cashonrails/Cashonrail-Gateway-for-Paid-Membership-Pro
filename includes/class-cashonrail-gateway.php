@@ -23,6 +23,13 @@ class MembershipPro_CashonRail_Gateway {
 			return; // Prevent duplicate rendering
 		}
 
+		// Ensure the selected gateway is "cashonrail"
+		$selected_gateway = isset($_REQUEST['gateway']) ? sanitize_text_field($_REQUEST['gateway']) : '';
+
+		if ($selected_gateway !== $this->gateway_name) {
+			return; // Do not display fields if another gateway is selected
+		}
+
 		$is_rendered = true;
 		?>
         <div id="pmpro_cashonrail_fields" class="pmpro_checkout">
